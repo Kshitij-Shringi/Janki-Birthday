@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janki's World</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- We'll add the Leaflet CSS library here later -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+    <header>
+        <h1>Happy Birthday, Janki!</h1>
+        <h2>Welcome to Janki's World</h2>
+    </header>
+    <main>
+        <div id="map"></div>
+    </main>
+    <footer>
+        <p>Made with love by mishtar kshitu bhai shringi</p>
+    </footer>
+    <!-- We'll add the Leaflet JavaScript library here later -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Image Gallery Modal -->
+    <div id="imageGalleryModal" class="modal">
+        <div class="modal-content gallery-modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="galleryLocationName">Location Photos</h3>
+            <div class="gallery-container">
+                <button class="gallery-nav prev-button" id="prevImageButton">&lt;</button>
+                <div id="galleryImagesContainer">
+                    <!-- Images will be loaded here by JavaScript -->
+                </div>
+                <button class="gallery-nav next-button" id="nextImageButton">&gt;</button>
+            </div>
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+                <!-- Thumbnails will be loaded here by JavaScript -->
+            </div>
+            <div class="gallery-caption" id="galleryCaption">
+                <!-- Caption will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content video-modal-content">
+            <span class="close-button">&times;</span>
+            <h3>A Special Birthday Song</h3>
+            <video id="birthdayVideo" controls>
+                <source src="videos/birthday-song.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Add a special button at the end of the journey -->
+    <div id="specialButton" class="special-button-container" style="display: none;">
+        <button class="special-button">
+            <span class="button-icon">🎸</span>
+            <span class="button-text">A Special Birthday Song</span>
+        </button>
+    </div>
+
+</body>
+</html> 

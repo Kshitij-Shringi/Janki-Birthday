@@ -35,53 +35,65 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Define a custom icon for Vadodara (Crocodile)
-    const crocodileIcon = L.icon({
-        iconUrl: 'images/crocodile-marker.png', // Make sure you have this image in your /images folder
-        iconSize: [38, 38], // Size of the icon (adjust as needed)
-        iconAnchor: [19, 38], // Point of the icon which will correspond to marker's location
-        popupAnchor: [0, -38] // Point from which the popup should open relative to the iconAnchor
+    // Define a custom icon for all markers (replacing crocodile icon)
+    const goldMarkerIcon = L.icon({
+        iconUrl: 'images/classy-gold-marker.svg', // Make sure to add this image to your /images folder
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32],
+        shadowUrl: 'images/marker-shadow.png', // Optional: add a subtle shadow
+        shadowSize: [41, 41],
+        shadowAnchor: [20, 41]
     });
 
     const locations = [
-        {
-            name: "Himmatnagar, Gujarat (Utsav Prime Complex, Mahaveer Nagar)",
-            coords: [23.5960, 72.9783],
-            message: "Himmatnagar - Where the wonderful story of Janki began! So much growth and learning happened here.",
-            image_gallery: ['images/himmatnagar1.jpg', 'images/himmatnagar2.jpg', 'images/himmatnagar3.jpg', 'images/himmatnagar4.jpg'] // Placeholder for images
-        },
-        {
-            name: "Ahmedabad, Gujarat (H.L. College of Commerce)",
-            coords: [23.0380, 72.5556],
-            message: "Ahmedabad - Stepping out for new horizons and laying the foundation for a bright future. Go Janki!",
-            image_gallery: []
-        },
-        {
-            name: "Vadodara, Gujarat (Alembic City Area)",
-            coords: [22.3245, 73.1689],
-            message: "Vadodara - A chapter of exploration, experiences, and tasty Mahakali Sev Usal!",
-            customIcon: crocodileIcon,
-            image_gallery: []
-        },
-        {
-            name: "Ahmedabad, Gujarat (SG Highway/Sindhu Bhavan Rd Area)",
-            coords: [23.0500, 72.5000],
-            message: "Ahmedabad (Round 2!) - Where dedication met destiny (and me!). So proud of your hard work and the start of your career journey.",
-            image_gallery: []
-        },
-        {
-            name: "Chandigarh (Sector 11A)",
-            coords: [30.7420, 76.7700],
-            message: "Chandigarh - Making new memories with family. Thinking of you always!",
-            image_gallery: []
-        },
-        {
-            name: "Mumbai, Maharashtra (Secret Trip!)",
-            coords: [19.0760, 72.8777], // Approximate coordinates for Mumbai
-            message: "Mumbai - Our unforgettable secret adventure! Shhh... 😉",
-            isSecret: true,
-            image_gallery: []
-        }
+      {
+        name: "નિરામય",
+        coords: [23.596, 72.9783],
+        message:
+          "Himmatnagar - Where the wonderful story of Janki began! So much growth and learning happened here.",
+        image_gallery: [
+          "images/himmatnagar1.jpg",
+          "images/himmatnagar2.jpg",
+          "images/himmatnagar3.jpg",
+          "images/himmatnagar4.jpg",
+        ],
+      },
+      {
+        name: "Ahmedabad, Gujarat (H.L. College of Commerce)",
+        coords: [23.038, 72.5556],
+        message:
+          "Ahmedabad - Stepping out for new horizons and laying the foundation for a bright future. Go Janki!",
+        image_gallery: [],
+      },
+      {
+        name: "Vadodara, Gujarat (Alembic City Area)",
+        coords: [22.3245, 73.1689],
+        message:
+          "Vadodara - A chapter of exploration, experiences, and tasty Mahakali Sev Usal!",
+        image_gallery: [],
+      },
+      {
+        name: "Ahmedabad, Gujarat (SG Highway/Sindhu Bhavan Rd Area)",
+        coords: [23.05, 72.5],
+        message:
+          "Ahmedabad (Round 2!) - Where dedication met destiny (and me!). So proud of your hard work and the start of your career journey.",
+        image_gallery: [],
+      },
+      {
+        name: "Chandigarh (Sector 11A)",
+        coords: [30.742, 76.77],
+        message:
+          "Chandigarh - Making new memories with family. Thinking of you always!",
+        image_gallery: [],
+      },
+      {
+        name: "Mumbai, Maharashtra (Secret Trip!)",
+        coords: [19.076, 72.8777],
+        message: "Mumbai - Our unforgettable secret adventure! Shhh... 😉",
+        isSecret: true,
+        image_gallery: [],
+      },
     ];
 
     // Modal elements
@@ -269,11 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         map.flyTo(location.coords, 7, { animate: true, duration: 2 });
         setTimeout(() => {
-            let markerOptions = {};
-            if (location.customIcon) {
-                markerOptions.icon = location.customIcon;
-            }
-            const marker = L.marker(location.coords, markerOptions).addTo(map);
+            // Use the gold marker icon for all locations
+            const marker = L.marker(location.coords, { icon: goldMarkerIcon }).addTo(map);
             let popupContent = `<b>${location.name}</b><br>${location.message}`;
             
             if (location.image_gallery && location.image_gallery.length > 0) {

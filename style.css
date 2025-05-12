@@ -13,6 +13,9 @@
     --background-pink: #fff5f5;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    --gold: #D4AF37;
+    --gold-light: #F4E4BC;
+    --black: #1a1a1a;
 }
 
 /* Basic Reset with Enhanced Typography */
@@ -79,7 +82,7 @@ body {
 
 /* Enhanced Header Styles */
 header {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -87,6 +90,7 @@ header {
     box-shadow: 0 4px 15px var(--shadow-color);
     position: relative;
     overflow: hidden;
+    border-bottom: 3px solid var(--gold);
 }
 
 header::before {
@@ -107,9 +111,11 @@ header h1 {
     font-size: 4.2rem;
     font-weight: 700;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     margin-bottom: 0.5rem;
     animation: fadeInSlideUp 1s ease-out 0.5s backwards;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
 }
 
 header h2 {
@@ -125,11 +131,13 @@ main {
     width: 95%;
     max-width: 1200px;
     margin: 2rem auto;
-    background: white;
+    background: var(--background-pink);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px var(--shadow-color);
     animation: fadeIn 1.5s ease-out;
+    border: 2px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* Enhanced Map Container */
@@ -141,29 +149,46 @@ main {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+    border: 3px solid var(--gold);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
-/* Leaflet popup styles */
+/* Enhanced Leaflet popup styles */
 .leaflet-popup-content-wrapper {
+    background: var(--black) !important;
+    color: white !important;
+    border: 2px solid var(--gold) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+    padding: 15px !important;
     animation: fadeIn 0.3s ease-out;
-    border-radius: 8px !important; /* More rounded popups */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
 }
 
 .leaflet-popup-content {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    color: #333;
-    line-height: 1.5;
+    color: white !important;
+    line-height: 1.6;
+    margin: 0 !important;
 }
 
 .leaflet-popup-content b {
-    font-weight: 700; /* Bolder Montserrat for location names in popup */
-    color: #c73f5d;
+    font-weight: 600;
+    color: var(--gold) !important;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 5px;
 }
 
-.leaflet-popup-tip-container {
-    animation: fadeIn 0.3s ease-out;
+.leaflet-popup-tip {
+    background: var(--black) !important;
+    border: 2px solid var(--gold) !important;
+    border-top: none !important;
+    border-left: none !important;
+    transform: rotate(45deg) !important;
+    margin-top: -10px !important;
 }
 
 /* Enhanced Footer */
@@ -172,11 +197,12 @@ footer {
     padding: 1.5rem 0;
     margin-top: auto;
     width: 100%;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     font-size: 1rem;
     animation: fadeIn 1s ease-out 1.5s backwards;
     font-weight: 300;
+    border-top: 3px solid var(--gold);
 }
 
 /* Image Gallery Modal Styles */
@@ -194,9 +220,10 @@ footer {
 }
 
 .modal-content {
-    background: white;
+    background: var(--black);
+    border: 2px solid var(--gold);
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     margin: 8% auto; /* Adjusted margin for better centering */
     padding: 25px;
     border: none; /* Removed border */
@@ -249,10 +276,12 @@ footer {
 #galleryLocationName {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #c73f5d;
-    font-size: 1.8rem; /* Larger modal title */
+    color: var(--gold);
+    font-size: 2rem;
     font-weight: 400;
     text-align: center;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 10px;
 }
 
 .modal.show {
@@ -268,23 +297,26 @@ footer {
 
 /* Enhanced Button Styles */
 .view-photos-button {
-    background: var(--gradient-primary);
-    color: white;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
     border: none;
     padding: 12px 25px;
     border-radius: 50px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    margin-top: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .view-photos-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
 }
 
 .view-photos-button:active {
@@ -293,7 +325,8 @@ footer {
 
 /* Enhanced Gallery Modal Styles */
 .gallery-modal-content {
-    background: var(--background-light);
+    background: var(--black);
+    color: white;
     max-width: 900px;
     padding: 30px;
     width: 95%;
@@ -338,8 +371,8 @@ footer {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: white;
-    border: none;
+    background: var(--black);
+    border: 2px solid var(--gold);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -348,14 +381,15 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333;
+    color: var(--gold);
     box-shadow: 0 4px 15px var(--shadow-color);
     transition: all 0.3s ease;
     z-index: 2;
 }
 
 .gallery-nav:hover {
-    background: white;
+    background: var(--gold);
+    color: var(--black);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transform: translateY(-50%) scale(1.1);
 }
@@ -405,7 +439,7 @@ footer {
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.3s ease;
-    border: 3px solid transparent;
+    border: 2px solid var(--gold);
 }
 
 .thumbnail:hover {
@@ -414,13 +448,14 @@ footer {
 
 .thumbnail.active {
     opacity: 1;
-    border-color: var(--primary-color);
+    border-color: var(--gold-light);
     transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
 .gallery-caption {
     text-align: center;
-    color: #666;
+    color: var(--gold-light);
     font-size: 14px;
     margin-top: 10px;
     min-height: 20px;
@@ -592,9 +627,9 @@ body.modal-open {
 }
 
 .special-button {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e 80%);
-    color: white;
-    border: none;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    border: 2px solid var(--gold);
     padding: 18px 28px 18px 22px;
     border-radius: 50px;
     font-size: 1.1rem;
@@ -606,13 +641,12 @@ body.modal-open {
     box-shadow: 0 4px 16px rgba(255, 107, 107, 0.18), 0 1.5px 6px rgba(0,0,0,0.08);
     transition: transform 0.18s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.18s;
     outline: none;
-    border: 2px solid #fff0;
 }
 
 .special-button:hover, .special-button:focus {
     transform: translateY(-3px) scale(1.04);
     box-shadow: 0 8px 32px rgba(255, 107, 107, 0.22), 0 2px 8px rgba(0,0,0,0.12);
-    border: 2px solid #fff6;
+    border: 2px solid var(--gold-light);
 }
 
 .button-icon {
@@ -648,7 +682,8 @@ body.modal-open {
 }
 
 .video-modal-content {
-    background: var(--background-light);
+    background: var(--black);
+    border: 2px solid var(--gold);
     max-width: 500px;
     width: 95%;
     margin: 0 auto;
@@ -663,10 +698,12 @@ body.modal-open {
 .video-modal-content h3 {
     margin-top: 0;
     margin-bottom: 18px;
-    color: #c73f5d;
+    color: var(--gold);
     font-size: 1.5rem;
     font-weight: 500;
     text-align: center;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 10px;
 }
 
 .video-modal-content video {
@@ -698,4 +735,39 @@ body.modal-open {
         max-height: 38vh;
         border-radius: 8px;
     }
+}
+
+/* Enhanced Marker Styles */
+.leaflet-marker-icon {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.leaflet-marker-shadow {
+    opacity: 0.4;
+}
+
+/* Add a subtle pulse animation for markers */
+@keyframes markerPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+}
+
+.leaflet-marker-icon.active {
+    animation: markerPulse 2s infinite;
 } 

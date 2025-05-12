@@ -64,35 +64,60 @@ document.addEventListener('DOMContentLoaded', function() {
         coords: [23.038, 72.5556],
         message:
           "Ahmedabad - Stepping out for new horizons and laying the foundation for a bright future. Go Janki!",
-        image_gallery: [],
+        image_gallery: [
+            "images/himmatnagar1.jpg",
+            "images/himmatnagar2.jpg",
+            "images/himmatnagar3.jpg",
+            "images/himmatnagar4.jpg",
+        ],
       },
       {
         name: "Vadodara, Gujarat (Alembic City Area)",
         coords: [22.3245, 73.1689],
         message:
           "Vadodara - A chapter of exploration, experiences, and tasty Mahakali Sev Usal!",
-        image_gallery: [],
+        image_gallery: [
+            "images/himmatnagar1.jpg",
+            "images/himmatnagar2.jpg",
+            "images/himmatnagar3.jpg",
+            "images/himmatnagar4.jpg",
+        ],
       },
       {
         name: "Ahmedabad, Gujarat (SG Highway/Sindhu Bhavan Rd Area)",
         coords: [23.05, 72.5],
         message:
           "Ahmedabad (Round 2!) - Where dedication met destiny (and me!). So proud of your hard work and the start of your career journey.",
-        image_gallery: [],
+        image_gallery: [
+            "images/himmatnagar1.jpg",
+            "images/himmatnagar2.jpg",
+            "images/himmatnagar3.jpg",
+            "images/himmatnagar4.jpg",
+        ],
       },
       {
         name: "Chandigarh (Sector 11A)",
         coords: [30.742, 76.77],
         message:
           "Chandigarh - Making new memories with family. Thinking of you always!",
-        image_gallery: [],
+        image_gallery: [
+            "images/himmatnagar1.jpg",
+            "images/himmatnagar2.jpg",
+            "images/himmatnagar3.jpg",
+            "images/himmatnagar4.jpg",
+        ],
       },
       {
         name: "Mumbai, Maharashtra (Secret Trip!)",
         coords: [19.076, 72.8777],
         message: "Mumbai - Our unforgettable secret adventure! Shhh... 😉",
         isSecret: true,
-        image_gallery: [],
+        image_gallery: [
+            "images/himmatnagar1.jpg",
+            "images/himmatnagar2.jpg",
+            "images/himmatnagar3.jpg",
+            "images/himmatnagar4.jpg",
+        ],
       },
     ];
 
@@ -267,6 +292,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to add all markers with popups and photo buttons
+    function renderAllLocationMarkers() {
+        locations.forEach((location, idx) => {
+            const marker = L.marker(location.coords, { icon: goldMarkerIcon }).addTo(map);
+            let popupContent = `<b>${location.name}</b><br>${location.message}`;
+            if (location.image_gallery && location.image_gallery.length > 0) {
+                const buttonId = `viewPhotosBtn_all_${idx}`;
+                popupContent += `<br><button id="${buttonId}" class="view-photos-button">View Photos</button>`;
+            }
+            bindPopup(marker, popupContent);
+            // Add event listeners for the photo button
+            if (location.image_gallery && location.image_gallery.length > 0) {
+                const buttonId = `viewPhotosBtn_all_${idx}`;
+                marker.on('popupopen', () => {
+                    setTimeout(() => {
+                        const btn = document.getElementById(buttonId);
+                        if (btn) {
+                            const newBtn = btn.cloneNode(true);
+                            btn.parentNode.replaceChild(newBtn, btn);
+                            newBtn.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleViewPhotosClick(location.name, idx);
+                            });
+                            newBtn.addEventListener('touchend', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleViewPhotosClick(location.name, idx);
+                            });
+                        }
+                    }, 100);
+                });
+            }
+        });
+    }
+
     // Function to add markers sequentially for the journey animation
     function showJourney(locationsToShow, index = 0) {
         if (index >= locationsToShow.length) {
@@ -274,6 +335,8 @@ document.addEventListener('DOMContentLoaded', function() {
             nextJourneyStepFunction = null;
             currentJourneyTimeoutId = null;
             setTimeout(showSpecialButton, 1000);
+            // After journey, render all markers for interactivity
+            setTimeout(renderAllLocationMarkers, 1200);
             return;
         }
         const location = locationsToShow[index];

@@ -781,17 +781,18 @@ body.modal-open {
 
 /* Enhanced Marker Styles */
 .leaflet-marker-icon {
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    /* Remove marker drop-shadow */
+    filter: none !important;
     transition: transform 0.3s ease;
 }
 
 .leaflet-marker-icon:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    filter: none !important;
 }
 
 .leaflet-marker-shadow {
-    opacity: 0.4;
+    display: none !important;
 }
 
 /* Add a subtle pulse animation for markers */
@@ -866,4 +867,87 @@ body.modal-open {
         padding-right: max(5px, env(safe-area-inset-right));
         padding-bottom: max(10px, env(safe-area-inset-bottom));
     }
+}
+
+/* --- iPhone 15 and modern mobile-specific tweaks --- */
+@media (max-width: 430px) {
+  /* Map container */
+  #map {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    height: 45vh;
+    min-height: 220px;
+    border-radius: 10px;
+  }
+  /* Leaflet popup/modal */
+  .leaflet-popup-content-wrapper {
+    min-width: 120px !important;
+    max-width: 95vw !important;
+    font-size: 1rem !important;
+    padding: 10px 6px !important;
+    border-radius: 10px !important;
+  }
+  .leaflet-popup-content {
+    font-size: 1rem !important;
+    padding: 0 !important;
+    word-break: break-word;
+  }
+  .view-photos-button {
+    width: 100%;
+    max-width: 95vw;
+    font-size: 1.08em;
+    padding: 0.7em 0.5em;
+    border-radius: 18px;
+    margin-top: 0.7em;
+  }
+  /* Modal/gallery */
+  .modal-content, .gallery-modal-content, .video-modal-content {
+    width: 98vw;
+    max-width: 99vw;
+    min-width: 0;
+    padding: 0.7em 0.2em 1.2em 0.2em;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  #galleryLocationName {
+    font-size: 1.1em;
+    padding: 0.2em 0.1em;
+    word-break: break-word;
+  }
+  #galleryThumbnails img.thumbnail {
+    width: 18vw;
+    max-width: 54px;
+    min-width: 28px;
+    height: auto;
+    margin: 0.1em;
+  }
+  .close-button {
+    font-size: 2rem;
+    top: 4px;
+    right: 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .gallery-nav, .thumbnail {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .gallery-caption {
+    font-size: 0.98em;
+    min-height: 18px;
+  }
+}
+
+/* Safe area insets for iPhone 15 and similar devices */
+@supports (padding: max(0px)) {
+  body, header, footer, main {
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+  }
+  .modal-content, .gallery-modal-content, .video-modal-content {
+    padding-left: max(2px, env(safe-area-inset-left));
+    padding-right: max(2px, env(safe-area-inset-right));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
 } 

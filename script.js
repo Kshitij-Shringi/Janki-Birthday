@@ -328,6 +328,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Fireworks function
+    function launchFireworks() {
+        if (typeof confetti === 'function') {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 80,
+                        angle: 60 + Math.random() * 60,
+                        spread: 70 + Math.random() * 20,
+                        origin: { x: Math.random(), y: Math.random() * 0.5 },
+                        colors: ['#FFD700', '#FF69B4', '#FFF', '#FF6B6B', '#D4AF37']
+                    });
+                }, i * 400);
+            }
+        }
+    }
+
     // Function to add markers sequentially for the journey animation
     function showJourney(locationsToShow, index = 0) {
         if (index >= locationsToShow.length) {
@@ -337,6 +354,8 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(showSpecialButton, 1000);
             // After journey, render all markers for interactivity
             setTimeout(renderAllLocationMarkers, 1200);
+            // Fireworks at the end of the journey
+            setTimeout(launchFireworks, 1500);
             return;
         }
         const location = locationsToShow[index];
@@ -506,4 +525,41 @@ document.addEventListener('DOMContentLoaded', function() {
             caption.textContent = `Photo ${index + 1} of ${galleryImages.length}`;
         }
     }
+
+    // Check marker icon image exists, fallback if not
+    function markerImageExists(url, callback) {
+        const img = new Image();
+        img.onload = () => callback(true);
+        img.onerror = () => callback(false);
+        img.src = url;
+    }
+    markerImageExists('images/classy-gold-marker.svg', function(exists) {
+        if (!exists) {
+            // fallback to default Leaflet marker
+            goldMarkerIcon.options.iconUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png';
+            goldMarkerIcon.options.shadowUrl = 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png';
+        }
+    });
+
+    // Confetti on click/tap anywhere on the website
+    function confettiAtPointer(e) {
+        if (typeof confetti === 'function') {
+            let x = 0.5, y = 0.5;
+            if (e.touches && e.touches.length > 0) {
+                x = e.touches[0].clientX / window.innerWidth;
+                y = e.touches[0].clientY / window.innerHeight;
+            } else if (e.clientX && e.clientY) {
+                x = e.clientX / window.innerWidth;
+                y = e.clientY / window.innerHeight;
+            }
+            confetti({
+                particleCount: 60,
+                spread: 70,
+                origin: { x, y },
+                colors: ['#FFD700', '#FF69B4', '#FFF', '#FF6B6B', '#D4AF37']
+            });
+        }
+    }
+    document.body.addEventListener('click', confettiAtPointer);
+    document.body.addEventListener('touchend', confettiAtPointer);
 }); 

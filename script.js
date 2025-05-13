@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "images/himmatnagar2.jpg",
           "images/himmatnagar3.jpg",
           "images/himmatnagar4.jpg",
+          "images/himmatnagar5.jpg",
+          "images/himmatnagar6.jpg",
+          "images/himmatnagar7.jpg",
+          "images/himmatnagar8.jpg",
+          "images/himmatnagar9.jpg",
+          "images/himmatnagar10.jpg"
         ],
       },
       {
@@ -65,10 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
         message:
           "Ahmedabad - Stepping out for new horizons and laying the foundation for a bright future. Go Janki!",
         image_gallery: [
-            "images/himmatnagar1.jpg",
-            "images/himmatnagar2.jpg",
-            "images/himmatnagar3.jpg",
-            "images/himmatnagar4.jpg",
+            "images/AhmedabadV1-1.jpg",
+            "images/AhmedabadV1-2.jpeg",
+            "images/AhmedabadV1-3.jpeg",
+            "images/AhmedabadV1-4.jpeg",
+            "images/AhmedabadV1-5.jpeg",
+            "images/AhmedabadV1-6.jpeg",
+            "images/AhmedabadV1-7.jpeg",
+            
         ],
       },
       {
@@ -77,10 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
         message:
           "Vadodara - A chapter of exploration, experiences, and tasty Mahakali Sev Usal!",
         image_gallery: [
-            "images/himmatnagar1.jpg",
-            "images/himmatnagar2.jpg",
-            "images/himmatnagar3.jpg",
-            "images/himmatnagar4.jpg",
+            "images/Baroda1.jpg",
+            "images/Baroda2.jpg",
+            "images/Baroda3.jpg",
+            "images/Baroda4.jpg"
         ],
       },
       {
@@ -89,10 +99,19 @@ document.addEventListener('DOMContentLoaded', function() {
         message:
           "Ahmedabad (Round 2!) - Where dedication met destiny (and me!). So proud of your hard work and the start of your career journey.",
         image_gallery: [
-            "images/himmatnagar1.jpg",
-            "images/himmatnagar2.jpg",
-            "images/himmatnagar3.jpg",
-            "images/himmatnagar4.jpg",
+            "images/AhmedabadV2-1.jpg",
+            "images/AhmedabadV2-2.jpg",
+            "images/AhmedabadV2-3.jpg",
+            "images/AhmedabadV2-4.jpg",
+            "images/AhmedabadV2-5.jpg",
+            "images/AhmedabadV2-6.jpg",
+            "images/AhmedabadV2-7.jpg",
+            "images/AhmedabadV2-8.jpg",
+            "images/AhmedabadV2-9.jpg",
+            "images/AhmedabadV2-10.jpg",
+            "images/AhmedabadV2-11.jpg",
+            "images/AhmedabadV2-12.jpg"
+            
         ],
       },
       {
@@ -101,24 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
         message:
           "Chandigarh - Making new memories with family. Thinking of you always!",
         image_gallery: [
-            "images/himmatnagar1.jpg",
-            "images/himmatnagar2.jpg",
-            "images/himmatnagar3.jpg",
-            "images/himmatnagar4.jpg",
-        ],
-      },
-      {
-        name: "Mumbai, Maharashtra (Secret Trip!)",
-        coords: [19.076, 72.8777],
-        message: "Mumbai - Our unforgettable secret adventure! Shhh... 😉",
-        isSecret: true,
-        image_gallery: [
-            "images/himmatnagar1.jpg",
-            "images/himmatnagar2.jpg",
-            "images/himmatnagar3.jpg",
-            "images/himmatnagar4.jpg",
-        ],
-      },
+            "images/Chandigadh1.jpg",
+            "images/Chandigadh2.jpg",
+            "images/Chandigadh3.jpg",
+            "images/Chandigadh4.jpg",
+            "images/Chandigadh5.jpg"
+
+            ],
+      }
+    //   {
+    //     name: "Mumbai, Maharashtra (Future MBA Journey!)",
+    //     coords: [19.076, 72.8777],
+    //     message: "Mumbai - Your next exciting chapter! Starting your MBA journey here. Wishing you all the success in this new adventure! 🎓✨",
+    //     isSecret: false,
+    //     image_gallery: [] // Empty array since it's a future location
+    //   },
     ];
 
     // Modal elements
@@ -210,8 +226,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show first image
             showImage(0);
         } else {
-            galleryImagesContainer.innerHTML = '<p>No images available for this location yet.</p>';
-            document.getElementById('galleryThumbnails').innerHTML = '';
+            // Show coming soon message for future locations
+            const comingSoonDiv = document.createElement('div');
+            comingSoonDiv.className = 'coming-soon-container';
+            comingSoonDiv.innerHTML = `
+                <div class="coming-soon-icon">🎓</div>
+                <h3>Coming Soon!</h3>
+                <p>Photos from your MBA journey in Mumbai will appear here.</p>
+                <p class="coming-soon-subtitle">Get ready for an amazing adventure!</p>
+            `;
+            galleryImagesContainer.appendChild(comingSoonDiv);
+            
+            // Animate the coming soon message
+            gsap.fromTo(comingSoonDiv,
+                { scale: 0.9, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
+            );
+            
+            // Hide thumbnails and navigation buttons for coming soon
+            document.getElementById('galleryThumbnails').style.display = 'none';
+            document.getElementById('prevImageButton').style.display = 'none';
+            document.getElementById('nextImageButton').style.display = 'none';
         }
 
         galleryModal.style.display = 'flex';
@@ -502,6 +537,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 { scale: 0.95, opacity: 0 },
                 { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }
             );
+
+            // Add click event listener to pause/resume journey
+            mainImage.addEventListener('click', () => {
+                if (currentJourneyTimeoutId) {
+                    clearTimeout(currentJourneyTimeoutId);
+                    currentJourneyTimeoutId = null;
+                    mainImage.style.cursor = 'pointer';
+                    mainImage.title = 'Click to resume journey';
+                } else {
+                    if (typeof nextJourneyStepFunction === 'function') {
+                        currentJourneyTimeoutId = setTimeout(nextJourneyStepFunction, 3000);
+                        mainImage.style.cursor = 'default';
+                        mainImage.title = 'Click to pause journey';
+                    }
+                }
+            });
         };
 
         // Animate thumbnails

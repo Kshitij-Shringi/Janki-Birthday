@@ -53,16 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
         message:
           "Himmatnagar - Where the wonderful story of Janki began! So much growth and learning happened here.",
         image_gallery: [
-          "images/himmatnagar1.jpg",
-          "images/himmatnagar2.jpg",
-          "images/himmatnagar3.jpg",
-          "images/himmatnagar4.jpg",
-          "images/himmatnagar5.jpg",
-          "images/himmatnagar6.jpg",
-          "images/himmatnagar7.jpg",
-          "images/himmatnagar8.jpg",
-          "images/himmatnagar9.jpg",
-          "images/himmatnagar10.jpg"
+          "images/Himmatnagar1.jpg",
+          "images/Himmatnagar2.jpg",
+          "images/Himmatnagar3.jpg",
+          "images/Himmatnagar4.jpg",
+          "images/Himmatnagar5.jpg",
+          "images/Himmatnagar6.jpg",
+          "images/Himmatnagar7.jpg",
+          "images/Himmatnagar8.jpg",
+          "images/Himmatnagar9.jpg",
+          "images/Himmatnagar10.jpg"
         ],
       },
       {

@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         name: "નિરામય",
         coords: [23.596, 72.9783],
         message:
-          "Himmatnagar - Where the wonderful story of Janki began! So much growth and learning happened here.",
+          "Where everything started! 💚",
         image_gallery: [
           "images/Himmatnagar1.jpg",
           "images/Himmatnagar2.jpg",
@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
       },
       {
-        name: "Ahmedabad, Gujarat (H.L. College of Commerce)",
+        name: "H.L. College of Commerce(Gujarat University wadu beacuse my jaanu is a merit student)",
         coords: [23.038, 72.5556],
         message:
-          "Ahmedabad - Stepping out for new horizons and laying the foundation for a bright future. Go Janki!",
+          "Ahmedabad Phase 1: When you left home for the first time. You faced a lots of ups and downs but you made it through. 💚",
         image_gallery: [
             "images/AhmedabadV1-1.jpg",
             "images/AhmedabadV1-2.jpeg",
@@ -82,10 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
       },
       {
-        name: "Vadodara, Gujarat (Alembic City Area)",
+        name: "Vadodara",
         coords: [22.3245, 73.1689],
         message:
-          "Vadodara - A chapter of exploration, experiences, and tasty Mahakali Sev Usal!",
+          "Vadodara: A chapter of exploration, living alone in a flat and owning like a boss and the mahakali sev usal uffff ",
         image_gallery: [
             "images/Baroda1.jpg",
             "images/Baroda2.jpg",
@@ -94,10 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
       },
       {
-        name: "Ahmedabad, Gujarat (SG Highway/Sindhu Bhavan Rd Area)",
+        name: "Ocean Finvest",
         coords: [23.05, 72.5],
         message:
-          "Ahmedabad (Round 2!) - Where dedication met destiny (and me!). So proud of your hard work and the start of your career journey.",
+          "Ahmedabad (Round 2!): Where dedication met destiny (and me ehehee). I am so proud of you and your hardwork jaanu. Nobody could have done it better than you, Mishti 💚",
         image_gallery: [
             "images/AhmedabadV2-1.jpg",
             "images/AhmedabadV2-2.jpg",
@@ -115,10 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
       },
       {
-        name: "Chandigarh (Sector 11A)",
+        name: "Chandigarh",
         coords: [30.742, 76.77],
         message:
-          "Chandigarh - Making new memories with family. Thinking of you always!",
+          "Chandigarh: Aghhhh being worlds best fifi to dearest gatu bahhiiii. You handled everything so well jaanu. You are legit the strongest and the smartest person I know. I am so proud of you and I love you so much. 💚",
         image_gallery: [
             "images/Chandigadh1.jpg",
             "images/Chandigadh2.jpg",
